@@ -15,3 +15,21 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 cards.forEach(card => observer.observe(card));
+const toggleBtn = document.getElementById("darkToggle");
+
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+  toggleBtn.textContent = "☀️";
+}
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    toggleBtn.textContent = "☀️";
+    localStorage.setItem("mode", "dark");
+  } else {
+    toggleBtn.textContent = "🌙";
+    localStorage.setItem("mode", "light");
+  }
+});
